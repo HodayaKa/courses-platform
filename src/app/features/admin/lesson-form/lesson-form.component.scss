@@ -1,0 +1,45 @@
+.lesson-form-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #555;
+      font-weight: 500;
+    }
+
+    // .form-control styles are now global.
+
+    .error-message {
+      color: #d9534f;
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+    }
+  }
+
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+
+    // .btn-primary and .btn-secondary styles are now global.
+    // The .btn class itself is also global, providing base styling.
+  }
+}
+
+// All .form-control, .btn, .btn-primary, .btn-secondary styles previously here
+// have been removed as they are now covered by global styles.scss.

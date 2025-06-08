@@ -1,0 +1,94 @@
+.courses-grid {
+  display: grid;
+  /* הגדרה זו תיצור עמודות גמישות שרוחבן המינימלי 300 פיקסלים והמקסימלי 1fr (חלק יחסי מהמקום הפנוי) */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px; /* רווח בין הכרטיסיות */
+  padding: 20px; /* ריפוד פנימי מסביב לרשת הכרטיסיות */
+}
+
+.course-card {
+  border: 1px solid #ddd; /* גבול עדין לכרטיסיה */
+  border-radius: 8px; /* פינות מעוגלות */
+  padding: 16px; /* ריפוד פנימי לכרטיסיה */
+  display: flex;
+  flex-direction: column; /* סידור התוכן בכרטיסיה בעמודה */
+  justify-content: space-between; /* פיזור התוכן לאורך הכרטיסיה */
+  background-color: #fff; /* רקע לבן לכרטיסיה */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* הצללה עדינה */
+  transition: transform 0.2s ease-in-out; /* אנימציה קלה במעבר עכבר */
+}
+
+.course-card:hover {
+  transform: translateY(-5px); /* הרמה קלה של הכרטיסיה במעבר עכבר */
+}
+
+.course-card-image {
+  width: 100%; /* התמונה תתפוס את כל רוחב הכרטיסיה */
+  height: 200px; /* גובה קבוע לתמונה, ניתן לשנות לפי הצורך */
+  object-fit: contain; /* התמונה תשמור על הפרופורציות שלה ותתאים לגובה/רוחב שהוגדר */
+  object-position: center; /* מיקום התמונה במרכז המסגרת שלה */
+  border-bottom: 1px solid #eee; /* קו הפרדה מתחת לתמונה */
+  margin-bottom: 15px; /* רווח מתחת לתמונה */
+  border-radius: 4px 4px 0 0; /* עיגול פינות עליונות של התמונה */
+}
+
+.course-card h3 {
+  font-size: 1.25rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.course-card .description {
+  font-size: 0.9rem;
+  color: #666;
+  flex-grow: 1; /* מאפשר לתיאור לתפוס מקום פנוי */
+  margin-bottom: 1rem;
+}
+
+.course-card .course-details {
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.course-card .course-details .detail {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+}
+
+.course-card .course-details .price .value {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.course-card a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  text-align: center;
+  transition: background-color 0.2s ease;
+}
+
+.course-card a:hover {
+  background-color: #0056b3;
+}
+
+/* סגנונות למצבי טעינה, שגיאה ומצב ריק - נלקחו מה-HTML */
+.loading, .error, .empty-state {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.2rem;
+}
+
+.loading div, .error div, .empty-state div {
+  margin-bottom: 10px;
+}
+
+.error {
+  color: red;
+}

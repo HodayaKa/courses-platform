@@ -1,0 +1,128 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&display=swap');
+
+:root {
+  --app-blue: #2EC4B6;
+  --app-pink: #FF6B6B;
+  --app-orange: #FF9F1C;
+  --app-yellow: #FFD166;
+
+  --app-blue-darker: #{darken(#2EC4B6, 10%)};
+  --app-pink-darker: #{darken(#FF6B6B, 10%)};
+  --app-orange-darker: #{darken(#FF9F1C, 10%)};
+  --app-yellow-darker: #{darken(#FFD166, 10%)};
+
+  --text-color-default: #333;
+  --text-color-light: #f4f7f6; // For text on dark/colored backgrounds
+  --background-color-default: #f4f7f6;
+}
+
+body {
+  font-family: 'Heebo', sans-serif;
+  margin: 0; /* Common practice to reset default margin */
+  padding: 0; /* Common practice to reset default padding */
+  background-color: var(--background-color-default);
+  color: var(--text-color-default);
+}
+
+/* General link styling */
+a {
+  color: var(--app-pink); // Using app-pink for general links, adjust if needed
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  color: var(--app-pink-darker);
+  text-decoration: underline;
+}
+
+// Global Form Control Styling
+.form-control {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+  &:focus {
+    border-color: var(--app-yellow);
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(var(--app-yellow), 0.25); // Needs RGB components for rgba if var() is used directly
+    // A simpler shadow without var in rgba: box-shadow: 0 0 0 0.2rem #FFD16640; // Hex with alpha
+  }
+}
+
+// Global Button Styling
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 4px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+  }
+}
+
+.btn-primary {
+  color: var(--text-color-light);
+  background-color: var(--app-pink);
+  border-color: var(--app-pink);
+
+  &:hover:not(:disabled) {
+    background-color: var(--app-pink-darker);
+    border-color: var(--app-pink-darker);
+  }
+}
+
+.btn-secondary {
+  color: var(--text-color-default); // Or light if background is dark enough
+  background-color: var(--app-orange);
+  border-color: var(--app-orange);
+
+  &:hover:not(:disabled) {
+    background-color: var(--app-orange-darker);
+    border-color: var(--app-orange-darker);
+  }
+}
+
+.btn-danger {
+  color: var(--text-color-light);
+  background-color: var(--app-pink); // Using app-pink as it's a strong reddish color
+  border-color: var(--app-pink);
+
+  &:hover:not(:disabled) {
+    background-color: var(--app-pink-darker);
+    border-color: var(--app-pink-darker);
+  }
+}
+
+.btn-success {
+  color: var(--text-color-light);
+  background-color: var(--app-blue);
+  border-color: var(--app-blue);
+
+  &:hover:not(:disabled) {
+    background-color: var(--app-blue-darker);
+    border-color: var(--app-blue-darker);
+  }
+}
+
+/* Global page container for consistent padding */
+.page-container {
+  padding: 20px; /* Feel free to adjust this value */
+  box-sizing: border-box;
+}

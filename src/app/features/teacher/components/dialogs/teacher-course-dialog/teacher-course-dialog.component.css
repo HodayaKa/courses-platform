@@ -1,0 +1,24 @@
+.course-dialog-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Spacing between form fields */
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+/* Add any other specific styles you need */

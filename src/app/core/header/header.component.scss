@@ -1,0 +1,67 @@
+header {
+  padding: 15px 0; /* ריווח פנימי עליון ותחתון */
+  border-bottom: 1px solid #eee; /* קו תחתון אפור בהיר ניטרלי */
+
+  nav {
+    display: flex;
+    direction: rtl;
+    align-items: center;
+    justify-content: center; // Center the .main-navigation-links group
+    width: 100%;
+    max-width: 1200px; // Optional: Max width for the nav content area
+    margin: 0 auto;    // Center the nav content area within the header bar
+    padding: 0 20px;   // Horizontal padding within the nav content area
+    box-sizing: border-box;
+    position: relative; // For absolute positioning of user-area
+
+    .main-navigation-links {
+      display: flex;
+      align-items: center;
+      gap: 25px; // Spacing between nav links
+
+      a {
+        color: var(--app-pink);
+        font-weight: 500;
+        text-decoration: none;
+        padding: 8px 12px;
+        border-radius: 4px;
+        transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+
+        &:hover,
+        &.active { // For routerLinkActive
+          color: var(--app-pink-darker);
+          background-color: var(--background-color-default); // Or a lighter pink if defined, e.g., var(--app-pink-lighter)
+        }
+      }
+    }
+
+    .user-area {
+      position: absolute;
+      left: 20px; // Relative to nav's padding box edge
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      gap: 15px; // Space between greeting and logout
+
+      span.user-greeting {
+        color: var(--app-pink);
+        font-weight: bold;
+      }
+
+      a { // Logout link
+        color: var(--app-pink-darker);
+        font-weight: 500;
+        text-decoration: none;
+        cursor: pointer;
+        padding: 8px 0; // Minimal padding for the logout link to align better
+        transition: color 0.2s ease-in-out;
+
+        &:hover {
+          color: var(--app-pink);
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

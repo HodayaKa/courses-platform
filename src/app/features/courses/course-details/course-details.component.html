@@ -1,0 +1,73 @@
+<!-- src/app/features/courses/course-details/course-details.component.html -->
+<div class="course-details-container">
+  <button class="back-button" (click)="goBack()">← חזרה לרשימת הקורסים</button>
+
+  <div *ngIf="loading" class="loading">
+    <div>טוען את פרטי הקורס...</div>
+    <div>🖌️ 🎨 ✏️</div>
+  </div>
+
+  <div *ngIf="error" class="error">
+    <div>אופס! משהו השתבש</div>
+    <div>{{ error }}</div>
+    <button class="action-button" (click)="goBack()">חזרה לרשימת הקורסים</button>
+  </div>
+
+  <div *ngIf="!loading && !error && course" class="course-details-card">
+    <div class="course-header">
+      <div class="course-level">{{ course.level }}</div>
+      <h1>{{ course.title }}</h1>
+      <div class="age-group">מיועד לגילאי {{ course.ageRange }}</div>
+    </div>
+
+    <div class="course-info">
+      <div class="course-description">
+        <h2>על הקורס</h2>
+        <p>{{ course.description }}</p>
+      </div>
+
+      <div class="course-meta">
+        <div class="meta-item">
+          <div class="meta-label">משך הקורס:</div>
+          <div class="meta-value">{{ course.duration }}</div>
+        </div>
+        
+        <div class="meta-item">
+          <div class="meta-label">ציוד נדרש:</div>
+          <ul class="materials-list">
+            <li *ngFor="let material of course.materials">{{ material }}</li>
+          </ul>
+        </div>
+        
+        <div class="meta-item price">
+          <div class="meta-label">מחיר:</div>
+          <div class="meta-value">₪{{ course.price }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-actions">
+      <!-- Enrollment Status Messages -->
+      <div *ngIf="isEnrolling" class="enrollment-status loading-enrollment">
+        מעבד את בקשתך, נא להמתין... ⏳
+      </div>
+      <div *ngIf="enrollmentSuccessMessage" class="enrollment-status success-message">
+        {{ enrollmentSuccessMessage }} 🎉
+      </div>
+      <div *ngIf="enrollmentErrorMessage" class="enrollment-status error-message">
+        {{ enrollmentErrorMessage }} 😕
+      </div>
+
+      <!-- Enroll Button -->
+      <button 
+        *ngIf="!enrollmentSuccessMessage" 
+        class="action-button register-button" 
+        (click)="enrollInCourse()" 
+        [disabled]="isEnrolling">
+        {{ isEnrolling ? 'בתהליך...' : 'הרשמה לקורס' }}
+      </button>
+      
+      <button class="action-button contact-button" (click)="openContactDialog()">יצירת קשר</button>
+    </div>
+  </div>
+</div>

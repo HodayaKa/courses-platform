@@ -1,0 +1,35 @@
+<div class="lesson-form-container">
+  <h2>{{ isEditMode ? 'Edit Lesson' : 'Create New Lesson' }}</h2>
+
+  <div *ngIf="isLoading" class="loading-indicator">
+    <p>Loading...</p>
+    <!-- Or use a spinner component -->
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <form [formGroup]="lessonForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" id="title" formControlName="title" class="form-control">
+      <div *ngIf="lessonForm.get('title')?.invalid && (lessonForm.get('title')?.dirty || lessonForm.get('title')?.touched)" class="alert alert-danger">
+        Title is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="content">Content</label>
+      <textarea id="content" formControlName="content" class="form-control" rows="5"></textarea>
+      <div *ngIf="lessonForm.get('content')?.invalid && (lessonForm.get('content')?.dirty || lessonForm.get('content')?.touched)" class="alert alert-danger">
+        Content is required.
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary" [disabled]="lessonForm.invalid || isLoading">{{ isEditMode ? 'Update Lesson' : 'Create Lesson' }}</button>
+      <button type="button" class="btn btn-secondary" (click)="onCancel()" [disabled]="isLoading">Cancel</button>
+    </div>
+  </form>
+</div>

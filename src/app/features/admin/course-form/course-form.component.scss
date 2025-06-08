@@ -1,0 +1,63 @@
+.course-form-container {
+  // Input and Textarea styling, as well as .btn, .btn-primary, .btn-secondary base styles
+  // are now handled by global styles.scss.
+  // Ensure <input> and <textarea> elements in the form have class="form-control".
+
+  // .form-actions styling can be added here if specific layout is needed.
+  // Buttons inside will use global .btn, .btn-primary, .btn-secondary classes by default.
+
+  .lesson-management-section {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+
+    h3 {
+      margin-bottom: 1rem;
+    }
+    
+    // Assumes HTML: <button class="btn btn-success add-lesson-button">...
+    .add-lesson-button { 
+      margin-bottom: 1rem; // Keep specific margin if needed
+      // Base style from .btn and .btn-success will apply.
+      // If padding/font-size needs to be different from global .btn, specify here.
+      // e.g., padding: 0.6rem 1.2rem; 
+    }
+
+    .lessons-list {
+      padding-left: 0;
+      list-style-type: none;
+
+      .lesson-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem;
+        border: 1px solid #eee;
+        margin-bottom: 0.5rem;
+        border-radius: 4px;
+        background-color: #fff;
+
+        .lesson-actions {
+          // Assumes HTML: 
+          // <button class="btn btn-secondary edit-button">Edit</button>
+          // <button class="btn btn-danger delete-button">Delete</button>
+          button { // Targets .edit-button and .delete-button if they are <button>
+            // Specific overrides for these smaller action buttons
+            padding: 0.5rem 1rem; 
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+            // Base styles from .btn and specific (e.g., .btn-secondary, .btn-danger) will apply.
+            // Color, background-color, border will come from global classes.
+          }
+
+          // .edit-button {
+          //   // Specific overrides for edit-button if .btn .btn-secondary isn't enough
+          // }
+          // .delete-button {
+          //   // Specific overrides for delete-button if .btn .btn-danger isn't enough
+          // }
+        }
+      }
+    }
+  }
+}

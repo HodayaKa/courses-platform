@@ -1,0 +1,45 @@
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  min-height: calc(100vh - 200px); // Adjust based on header/footer height
+
+  h1 {
+    color: var(--app-pink); // Using app-pink for the main heading
+    margin-bottom: 25px;
+    font-size: 2.8em;
+    font-weight: bold;
+  }
+
+  p {
+    color: var(--text-color-default);
+    font-size: 1.3em;
+    line-height: 1.7;
+    max-width: 700px;
+    margin-bottom: 15px;
+  }
+
+  .cta-button {
+    // Option 1: Use global button styles by adding classes in HTML: class="btn btn-primary"
+    // Option 2: Style it specifically here using global vars
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 30px;
+    background-color: var(--app-blue); // Using app-blue for CTA, could be app-pink as well
+    color: var(--text-color-light);
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 500;
+    border-radius: 25px;
+    border: none; // Ensuring no default border interferes
+    transition: background-color 0.3s ease, transform 0.2s ease;
+
+    &:hover {
+      background-color: var(--app-blue-darker);
+      transform: translateY(-2px);
+    }
+  }
+}

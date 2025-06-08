@@ -1,0 +1,81 @@
+<div class="manage-courses-container">
+  <h2>Manage Your Courses</h2>
+
+  <button mat-raised-button color="primary" (click)="openCreateCourseDialog()" class="add-course-button">
+    <mat-icon>add</mat-icon> Add New Course
+  </button>
+
+  <div *ngIf="isLoading" class="loading-indicator">
+    <mat-spinner diameter="50"></mat-spinner>
+    <p>Loading courses...</p>
+  </div>
+
+  <div *ngIf="errorMessage && !isLoading" class="error-message">
+    <mat-icon color="warn">warning</mat-icon>
+    <span>{{ errorMessage }}</span>
+  </div>
+
+  <div *ngIf="!isLoading && courses.length === 0 && !errorMessage" class="no-courses">
+    <p>You haven't created any courses yet. Click "Add New Course" to get started!</p>
+  </div>
+
+  <table mat-table [dataSource]="courses" class="mat-elevation-z8 courses-table" *ngIf="!isLoading && courses.length > 0">
+
+    <!-- Title Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <td mat-cell *matCellDef="let course"> {{course.title}} </td>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <td mat-cell *matCellDef="let course"> {{course.description | slice:0:100}}{{course.description && course.description.length > 100 ? '...' : ''}} </td>
+    </ng-container>
+
+    <!-- Duration Column -->
+    <ng-container matColumnDef="duration">
+      <th mat-header-cell *matHeaderCellDef> Duration </th>
+      <td mat-cell *matCellDef="let course"> {{course.duration || 'N/A'}} </td>
+    </ng-container>
+
+    <!-- Age Range Column -->
+    <ng-container matColumnDef="ageRange">
+      <th mat-header-cell *matHeaderCellDef> Age Range </th>
+      <td mat-cell *matCellDef="let course"> {{course.ageRange || 'N/A'}} </td>
+    </ng-container>
+
+    <!-- Level Column -->
+    <ng-container matColumnDef="level">
+      <th mat-header-cell *matHeaderCellDef> Level </th>
+      <td mat-cell *matCellDef="let course"> {{course.level || 'N/A'}} </td>
+    </ng-container>
+
+    <!-- ImageUrl Column -->
+    <ng-container matColumnDef="imageUrl">
+      <th mat-header-cell *matHeaderCellDef> Image </th>
+      <td mat-cell *matCellDef="let course">
+        <img [src]="course.imageUrl || 'https://via.placeholder.com/50'" alt="{{course.title}}" class="course-thumbnail">
+      </td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let course">
+        <button mat-icon-button color="primary" (click)="editCourse(course)" matTooltip="Edit Course">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="accent" (click)="manageLessons(course.id)" matTooltip="Manage Lessons">
+          <mat-icon>list_alt</mat-icon> <!-- or 'school', 'auto_stories' -->
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteCourse(course.id)" matTooltip="Delete Course">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

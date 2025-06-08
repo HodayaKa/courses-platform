@@ -1,0 +1,30 @@
+/* Styles for MyCoursesComponent */
+.course-card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  border: none; /* Remove default card border if using shadow for elevation */
+}
+
+.course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15) !important; /* Enhanced shadow on hover */
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover; /* Ensures images cover the area nicely */
+  border-bottom: 1px solid #eee;
+}
+
+.no-image-placeholder {
+  height: 200px;
+  border-bottom: 1px solid #eee;
+}
+
+.course-description {
+  min-height: 72px; /* Approx 3 lines of text, adjust as needed */
+}
+
+.spinner-border {
+  /* Ensure spinner is easily visible */
+  color: var(--bs-primary) !important;
+}

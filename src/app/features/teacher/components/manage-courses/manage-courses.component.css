@@ -1,0 +1,64 @@
+.manage-courses-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.add-course-button {
+  margin-bottom: 20px;
+}
+
+.loading-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  color: #555;
+}
+
+.loading-indicator mat-spinner {
+  margin-bottom: 10px;
+}
+
+.error-message, .no-courses {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+  padding: 15px;
+  border-radius: 4px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.error-message mat-icon {
+  margin-right: 10px;
+}
+
+.no-courses {
+  background-color: #e2e3e5;
+  color: #383d41;
+  border-color: #d6d8db;
+}
+
+.courses-table {
+  width: 100%;
+}
+
+.course-thumbnail {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.mat-column-description {
+  max-width: 300px; /* Adjust as needed */
+  white-space: normal; /* Allow wrapping */
+}
+
+.mat-column-actions {
+  width: 180px; /* Adjust to fit buttons */
+  text-align: right;
+}

@@ -1,0 +1,46 @@
+<!-- Suggested content for admin-course-list.component.html -->
+<div class="admin-course-list-container">
+  <h2>My Courses</h2>
+
+  <div class="controls">
+    <a routerLink="/admin/courses/new" class="btn btn-primary">Create New Course</a>
+  </div>
+
+  <div *ngIf="isLoading" class="loading-indicator">
+    <p>Loading courses...</p>
+    <!-- You can add a spinner icon here -->
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <div *ngIf="!isLoading && !errorMessage && courses.length === 0" class="no-courses">
+    <p>You haven't created any courses yet. <a routerLink="/admin/courses/new">Create your first course!</a></p>
+  </div>
+
+  <div *ngIf="!isLoading && courses.length > 0" class="courses-table-container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Image</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let course of courses">
+          <td>{{ course.title }}</td>
+          <td><img [src]="course.imageUrl" alt="{{ course.title }}" *ngIf="course.imageUrl" style="width: 100px; height: auto; border-radius: 4px;" onError="this.style.display='none'"></td>
+          <td>{{ course.description }}</td>
+          <td>
+            <button (click)="editCourse(course.id)" class="btn btn-sm btn-secondary">Edit</button>
+            <!-- Add a small margin or use a button group for spacing -->
+            <button (click)="deleteCourse(course.id)" class="btn btn-sm btn-danger" style="margin-left: 5px;">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

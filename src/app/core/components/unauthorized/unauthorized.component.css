@@ -1,0 +1,32 @@
+.unauthorized-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  text-align: center;
+}
+
+.unauthorized-container h1 {
+  font-size: 2.5rem;
+  color: #dc3545; /* Red color for emphasis */
+  margin-bottom: 1rem;
+}
+
+.unauthorized-container p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.unauthorized-container a {
+  padding: 0.8rem 1.5rem;
+  background-color: #007bff; /* Blue color for the button */
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.unauthorized-container a:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}

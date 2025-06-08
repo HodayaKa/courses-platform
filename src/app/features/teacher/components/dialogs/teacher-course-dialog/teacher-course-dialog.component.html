@@ -1,0 +1,66 @@
+<h2 mat-dialog-title>{{ isEditMode ? 'Edit Course' : 'Create New Course' }}</h2>
+<mat-dialog-content>
+  <form [formGroup]="courseForm" class="course-dialog-form">
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" required>
+      <mat-error *ngIf="courseForm.get('title')?.hasError('required')">Title is required.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" required rows="3"></textarea>
+      <mat-error *ngIf="courseForm.get('description')?.hasError('required')">Description is required.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Image URL (Optional)</mat-label>
+      <input matInput formControlName="imageUrl">
+    </mat-form-field>
+    <div *ngIf="courseForm.get('imageUrl')?.value" style="margin-bottom: 15px;">
+        <img [src]="courseForm.get('imageUrl')?.value" alt="Image Preview" style="max-width: 150px; max-height: 100px; border: 1px solid #ccc; display: block;">
+    </div>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Duration (e.g., '8 weeks', '12 hours')</mat-label>
+      <input matInput formControlName="duration" required>
+      <mat-error *ngIf="courseForm.get('duration')?.hasError('required')">Duration is required.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Age Range (e.g., '6-8', '10+')</mat-label>
+      <input matInput formControlName="ageRange" required>
+      <mat-error *ngIf="courseForm.get('ageRange')?.hasError('required')">Age range is required.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Level</mat-label>
+      <mat-select formControlName="level" required>
+        <mat-option *ngFor="let level of levels" [value]="level">
+          {{level}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="courseForm.get('level')?.hasError('required')">Level is required.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Required Equipment (Optional, e.g., 'Laptop, Specific software')</mat-label>
+      <input matInput formControlName="requiredEquipment">
+      <!-- No specific error for 'required' as it's optional -->
+    </mat-form-field>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+    <div *ngIf="isLoading" class="loading-spinner">
+      <!-- Add a mat-spinner here if desired -->
+      Loading...
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()" [disabled]="isLoading">Cancel</button>
+  <button mat-raised-button color="primary" (click)="onSave()" [disabled]="isLoading || courseForm.invalid">
+    {{ isEditMode ? 'Save Changes' : 'Create Course' }}
+  </button>
+</mat-dialog-actions>

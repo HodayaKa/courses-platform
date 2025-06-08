@@ -1,0 +1,32 @@
+<header>
+  <nav>
+    <div class="main-navigation-links">
+      <a routerLink="/welcome">בית</a>
+      <a routerLink="/courses">קורסים</a>
+
+      <!-- Teacher specific links -->
+      <ng-container *ngIf="isTeacher$ | async">
+        <a routerLink="/admin/courses">ניהול הקורסים שלי</a>
+      </ng-container>
+
+      <!-- Admin specific links -->
+      <ng-container *ngIf="isAdmin$ | async">
+        <a routerLink="/admin/dashboard">לוח בקרה אדמין</a>
+        <!-- Add more admin links as needed, e.g., /admin/users, /admin/courses -->
+      </ng-container>
+
+      <!-- Login/Register links (only if not logged in) -->
+      <ng-container *ngIf="!(isLoggedIn$ | async)">
+        <a routerLink="/auth/login">התחברות</a>
+        <a routerLink="/auth/register">הרשמה</a>
+      </ng-container>
+    </div>
+
+    <div class="user-area">
+      <ng-container *ngIf="isLoggedIn$ | async">
+        <span class="user-greeting" *ngIf="currentUserFullName$ | async as userName">שלום, {{ userName }}</span>
+        <a (click)="logout()" style="cursor: pointer;">התנתקות</a>
+      </ng-container>
+    </div>
+  </nav>
+</header>

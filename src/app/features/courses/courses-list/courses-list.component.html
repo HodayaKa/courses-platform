@@ -1,0 +1,41 @@
+<h2>✏️ קורסי הציור שלנו 🎨</h2>
+
+<div *ngIf="loading" class="loading">
+  <div>טוען קורסים מדהימים...</div>
+  <div>🖌️ 🎨 ✏️</div>
+</div>
+
+<div *ngIf="error" class="error">
+  <div>אופס! משהו השתבש</div>
+  <div>{{ error }}</div>
+</div>
+
+<div *ngIf="!loading && !error && courses.length === 0" class="empty-state">
+  <div>אין קורסים זמינים כרגע</div>
+  <div>נחזור בקרוב עם קורסים חדשים ומרתקים! 🎨</div>
+</div>
+
+<div *ngIf="!loading && !error" class="courses-grid">
+  <div *ngFor="let course of courses" class="course-card">
+    <div class="course-level">{{ course.level }}</div>
+    <h3>{{ course.title }}</h3>
+    <p class="description">{{ course.description }}</p>
+    
+    <div class="course-details">
+      <div class="detail">
+        <span class="label">גילאים:</span>
+        <span class="value">{{ course.ageGroup }}</span>
+      </div>
+      <div class="detail">
+        <span class="label">משך:</span>
+        <span class="value">{{ course.duration }}</span>
+      </div>
+      <div class="detail price">
+        <span class="label">מחיר:</span>
+        <span class="value">₪{{ course.price }}</span>
+      </div>
+    </div>
+    
+    <a [routerLink]="['/courses', course.id]">בואו לצייר! 🖌️</a>
+  </div>
+</div>

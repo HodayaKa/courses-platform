@@ -1,0 +1,47 @@
+<div class="container mt-4">
+  <h2>My Enrolled Courses</h2>
+
+  <div *ngIf="isLoading" class="text-center my-5">
+    <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-2 fs-5">Loading your courses...</p>
+  </div>
+
+  <div *ngIf="!isLoading && error" class="alert alert-danger">
+    <p class="mb-0">{{ error }}</p>
+    <a *ngIf="!(authService.isLoggedInUser() | async)" routerLink="/auth/login" class="alert-link">Login here</a>
+  </div>
+
+  <div *ngIf="!isLoading && !error && (enrolledCourses$ | async) as courses">
+    <div *ngIf="courses.length > 0; else noCourses" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <div *ngFor="let course of courses" class="col">
+        <div class="card h-100 shadow-sm course-card">
+          <img
+            *ngIf="course.imageUrl"
+            [src]="course.imageUrl"
+            class="card-img-top"
+            alt="{{ course.title }}"
+            onerror="this.style.display='none'; this.parentElement.querySelector('.no-image-placeholder')?.removeAttribute('hidden')"
+          />
+          <div hidden class="no-image-placeholder card-img-top d-flex align-items-center justify-content-center bg-light">
+            <span class="text-muted fs-4">No Image</span>
+          </div>
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ course.title }}</h5>
+            <p class="card-text flex-grow-1 course-description">{{ course.description | slice:0:100 }}<span *ngIf="course.description && course.description.length > 100">...</span></p>
+            <p class="card-text mb-2"><small class="text-muted">Price: {{ course.price !== null && course.price !== undefined ? (course.price | currency:'USD') : 'N/A' }}</small></p>
+            <a [routerLink]="['/courses', course.id]" class="btn btn-primary mt-auto align-self-start">View Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #noCourses>
+      <div class="text-center mt-5 p-5 bg-light rounded">
+        <p class="lead fs-4">You are not enrolled in any courses yet.</p>
+        <p>Why not explore our catalog and find something new to learn?</p>
+        <a routerLink="/courses" class="btn btn-lg btn-info mt-3">Browse All Courses</a>
+      </div>
+    </ng-template>
+  </div>
+</div>

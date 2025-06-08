@@ -1,0 +1,51 @@
+<div class="contact-form-container">
+  <div mat-dialog-title class="dialog-title">
+    <h2>צור קשר</h2>
+    <button mat-icon-button (click)="onCancel()" class="close-button" aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+    <mat-dialog-content class="dialog-content">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>שם מלא</mat-label>
+        <input matInput formControlName="name" required>
+        <mat-error *ngIf="contactForm.get('name')?.hasError('required')">
+          שדה שם הוא חובה
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>כתובת אימייל</mat-label>
+        <input matInput formControlName="email" type="email" required>
+        <mat-error *ngIf="contactForm.get('email')?.hasError('required')">
+          שדה אימייל הוא חובה
+        </mat-error>
+        <mat-error *ngIf="contactForm.get('email')?.hasError('email')">
+          כתובת אימייל אינה תקינה
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>נושא הפנייה</mat-label>
+        <input matInput formControlName="subject" required>
+        <mat-error *ngIf="contactForm.get('subject')?.hasError('required')">
+          שדה נושא הוא חובה
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>תוכן ההודעה</mat-label>
+        <textarea matInput formControlName="message" rows="5" required></textarea>
+        <mat-error *ngIf="contactForm.get('message')?.hasError('required')">
+          שדה הודעה הוא חובה
+        </mat-error>
+      </mat-form-field>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end" class="dialog-actions">
+      <button mat-stroked-button type="button" (click)="onCancel()">ביטול</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="contactForm.invalid">שלח פנייה</button>
+    </mat-dialog-actions>
+  </form>
+</div>
